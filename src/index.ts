@@ -28,7 +28,7 @@ async function app() {
     .sort((a, b) => b.localeCompare(a))
     .find(() => true);
 
-  const stats = require(`${path}/core/${lastDataFile}`);
+  const stats = require(`${path}/01-data/${lastDataFile}`);
   const annual = stats.data.data.financials.annual;
   if (annual.revenue.length < 10) {
     throw new Error('Company has not been reporting results for 10 years');
