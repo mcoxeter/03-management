@@ -2,7 +2,7 @@
 
 The program will score the management team for a business.
 
-<p>The analysis examins the following areas:</p>
+<p>The analysis examines the following areas:</p>
 
 **ROIC**
 
