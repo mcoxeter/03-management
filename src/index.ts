@@ -75,9 +75,14 @@ async function app() {
   }
 }
 
+interface IReference {
+  displayName: string;
+  url: string;
+}
+
 interface IAnalysis {
   description: string;
-  reference: string[];
+  reference: IReference[];
   redFlags: string[];
   greenFlags: string[];
 
