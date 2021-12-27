@@ -4,8 +4,13 @@ const config = require('./config.json');
 
 async function app() {
   var myArgs = process.argv.slice(2);
-  const symbol = myArgs[0];
 
+  for (const symbol of myArgs) {
+    await evaluateStock(symbol);
+  }
+}
+
+function evaluateStock(symbol: string): void {
   const path = `${config.path}/${symbol}`;
 
   const requiredPaths = [path, `${path}/03-management`];
@@ -64,7 +69,7 @@ async function app() {
       roicAnalysis.score + ratiosAnalysis.score + debtToEquityAnalysis.score
   };
 
-  console.log('Writing ', `${path}management/${nowDateStr}.json`);
+  console.log('Writing ', `${path}/03-management/${nowDateStr}.json`);
   try {
     fs.writeFileSync(
       `${path}/03-management/${nowDateStr}.json`,
