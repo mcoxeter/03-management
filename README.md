@@ -27,7 +27,21 @@ This is an example of a config.json file:
 
 ```json
 {
-  "path": "C:/Business analysis/Evaluation"
+  "path": "C:/Business analysis"
+}
+```
+
+2. create an evaluate.json file in the 'path' folder.
+   This file can drive the evaluation list. The following is the structure of the file:
+
+```
+{
+  "evaluate": [
+    { "Symbol": "ADBE", "OverrideGrowth": 25 },
+    { "Symbol": "ATVI" },
+    { "Symbol": "BRK-B" },
+    { "Symbol": "CMG" },
+  ]
 }
 ```
 
@@ -35,13 +49,14 @@ This is an example of a config.json file:
 
 > Before you run this program, you will need to have run the `01-data` program first on the stock.
 
-In this example the program will score the fundamental data on Facebook
+`npm start`
+In this example the program will gather data of the symbols in the evaluate.json file
 
 `npm start -- FB`
-
-In this example the program will gather data on Facebook and Adobe
+In this example the program will score the fundamental data on Facebook
 
 `npm start -- FB ADBE`
+In this example the program will gather data on Facebook and Adobe
 
 ## Output
 
@@ -57,60 +72,66 @@ C:/Business analysis/Evaluation/FB/02-management/2021.12.18.json
 ### Example output
 
 ```
+
 {
-  "type": "03-management",
-  "symbol": "FB",
-  "references": [],
-  "date": "2021.12.20",
-  "question1": "Does the CEO have high levels of stock ownership",
-  "roicAnalysis": {
-    "description": "How well the management invests the surplus cash. roic 10% minimum, roic 15% Ideal, roic 20% Amazing.",
-    "greenFlags": [],
-    "redFlags": ["This company has 2 roic values under 10%."],
-    "periods": [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020],
-    "reference": [],
-    "roic": [
-      0.2555, 0.0055, 0.1018, 0.1132, 0.0913, 0.197, 0.2386, 0.2781, 0.1891,
-      0.2343
-    ],
-    "roicAverage": 0.17043999999999998,
-    "roicAverageScore": 1,
-    "roicScore": 6,
-    "score": 7
-  },
-  "ratiosAnalysis": {
-    "description": "How is the debt in the companies handled. Current Ratio is the current assets with its total liabilities. > 100% is a must, > 200% is ideal",
-    "greenFlags": [
-      "Assests are consistanty over 200% liabilities for the last ten years. Debt is managed wonderfully."
-    ],
-    "redFlags": [],
-    "reference": [],
-    "periods": [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020],
-    "current_ratios": [
-      5.1212, 10.71, 11.8818, 9.403, 11.2477, 11.9655, 12.9156, 7.1939, 4.3994,
-      5.051
-    ],
-    "current_ratiosAverage": 8.98891,
-    "current_ratiosAverageScore": 2,
-    "current_ratiosScore": 20,
-    "score": 22
-  },
-  "debtToEquityAnalysis": {
-    "description": "How leveraged the company is (e.g. Risk). Debt to equity of .5 or less is ideal",
-    "greenFlags": [
-      "Debt has been consistantly mananged wonderfully over the last ten years."
-    ],
-    "redFlags": [],
-    "reference": [],
-    "periods": [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020],
-    "debt_to_equity": [
-      0.0812, 0.1693, 0.0153, 0.0032, 0.0069, 0, 0, 0.0059, 0.0969, 0.075
-    ],
-    "debt_to_equityAverage": 0.04537,
-    "debt_to_equityAverageScore": 1,
-    "debt_to_equityScore": 10,
-    "score": 11
-  },
-  "score": 40
+"type": "03-management",
+"symbol": "FB",
+"references": [],
+"date": "2021.12.20",
+"question1": "Does the CEO have high levels of stock ownership",
+"roicAnalysis": {
+"description": "How well the management invests the surplus cash. roic 10% minimum, roic 15% Ideal, roic 20% Amazing.",
+"greenFlags": [],
+"redFlags": ["This company has 2 roic values under 10%."],
+"periods": [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020],
+"reference": [],
+"roic": [
+0.2555, 0.0055, 0.1018, 0.1132, 0.0913, 0.197, 0.2386, 0.2781, 0.1891,
+0.2343
+],
+"roicAverage": 0.17043999999999998,
+"roicAverageScore": 1,
+"roicScore": 6,
+"score": 7
+},
+"ratiosAnalysis": {
+"description": "How is the debt in the companies handled. Current Ratio is the current assets with its total liabilities. > 100% is a must, > 200% is ideal",
+"greenFlags": [
+"Assests are consistanty over 200% liabilities for the last ten years. Debt is managed wonderfully."
+],
+"redFlags": [],
+"reference": [],
+"periods": [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020],
+"current_ratios": [
+5.1212, 10.71, 11.8818, 9.403, 11.2477, 11.9655, 12.9156, 7.1939, 4.3994,
+5.051
+],
+"current_ratiosAverage": 8.98891,
+"current_ratiosAverageScore": 2,
+"current_ratiosScore": 20,
+"score": 22
+},
+"debtToEquityAnalysis": {
+"description": "How leveraged the company is (e.g. Risk). Debt to equity of .5 or less is ideal",
+"greenFlags": [
+"Debt has been consistantly mananged wonderfully over the last ten years."
+],
+"redFlags": [],
+"reference": [],
+"periods": [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020],
+"debt_to_equity": [
+0.0812, 0.1693, 0.0153, 0.0032, 0.0069, 0, 0, 0.0059, 0.0969, 0.075
+],
+"debt_to_equityAverage": 0.04537,
+"debt_to_equityAverageScore": 1,
+"debt_to_equityScore": 10,
+"score": 11
+},
+"score": 40
 }
+
+```
+
+```
+
 ```
