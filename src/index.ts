@@ -105,7 +105,15 @@ function analyseRoic(periods: number[], roic: number[]): IROICAnalysis {
   let hasRoicUnderMinimumCount = 0;
 
   const scoreRoic = (a_roic: number): number => {
-    if (a_roic < 0.1) {
+    if (a_roic < 0.1 && a_roic > 0.07) {
+      hasRoicUnderMinimumCount++;
+      return 0;
+    }
+    if (a_roic < 0.08 && a_roic > 0.05) {
+      hasRoicUnderMinimumCount++;
+      return -1;
+    }
+    if (a_roic < 0.06) {
       hasRoicUnderMinimumCount++;
       return -3;
     }
